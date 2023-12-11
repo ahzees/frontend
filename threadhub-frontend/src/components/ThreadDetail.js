@@ -52,7 +52,7 @@ const ThreadDetail = () => {
 
   const handleDeleteThread = async () => {
     try {
-      const response = await fetch(`http://0.0.0.0:8000/thread/${id}/delete/`, {
+      const response = await fetch(`https://django-server-production-feda.up.railway.app/${id}/delete/`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
