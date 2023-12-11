@@ -1,0 +1,7 @@
+services:
+  web:
+    build: ./threadhub-frontend
+    ports:
+      - "3003:3000"
+    volumes:
+      - ./frontend:/frontend
