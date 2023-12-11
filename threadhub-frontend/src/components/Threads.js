@@ -11,7 +11,7 @@ const Threads = () => {
   useEffect(() => {
     const fetchThreads = async () => {
       try {
-        const response = await fetch('http://0.0.0.0:8000/thread/all/', {
+        const response = await fetch('https://django-server-production-feda.up.railway.app/thread/all/', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

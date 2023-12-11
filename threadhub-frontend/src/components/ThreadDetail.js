@@ -14,7 +14,7 @@ const ThreadDetail = () => {
 
   const fetchThread = async () => {
     try {
-      const response = await fetch(`http://0.0.0.0:8000/thread/${id}/view/`, {
+      const response = await fetch(`https://django-server-production-feda.up.railway.app/thread/${id}/view/`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
