@@ -16,7 +16,7 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://0.0.0.0:8000/auth/v1/auth/register/', {
+      const response = await fetch('https://django-server-production-feda.up.railway.app/auth/v1/auth/register/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

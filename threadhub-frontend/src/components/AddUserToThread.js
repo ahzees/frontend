@@ -9,7 +9,7 @@ const AddUserToThread = ({ threadId, onClose }) => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`http://0.0.0.0:8000/thread/${threadId}/add_members/`, {
+      const response = await fetch(`https://django-server-production-feda.up.railway.app/thread/${threadId}/add_members/`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

@@ -10,7 +10,7 @@ const CreateMessage = ({ threadId, onClose, onMessageCreated }) => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`http://0.0.0.0:8000/thread/${threadId}/message/`, {
+      const response = await fetch(`https://django-server-production-feda.up.railway.app/thread/${threadId}/message/`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
