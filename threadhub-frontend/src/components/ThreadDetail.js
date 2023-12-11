@@ -1,15 +1,16 @@
 // src/components/ThreadDetail.js
 import React, { useState, useEffect } from 'react';
 import './ThreadDetail.css';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import CreateMessage from './CreateMessage';
-import AddUserToThread from './AddUserToThread'; // Додаємо імпорт
+import AddUserToThread from './AddUserToThread';
 
 const ThreadDetail = () => {
   const { id } = useParams();
+  const navigate = useNavigate(); // Додаємо useNavigate
   const [thread, setThread] = useState(null);
   const [showCreateMessage, setShowCreateMessage] = useState(false);
-  const [showAddUser, setShowAddUser] = useState(false); // Додаємо стейт для вікна додавання користувача
+  const [showAddUser, setShowAddUser] = useState(false);
 
   const fetchThread = async () => {
     try {
@@ -41,13 +42,35 @@ const ThreadDetail = () => {
   };
 
   const handleMessageCreated = () => {
-    // Reload thread details after creating a message
     fetchThread();
     setShowCreateMessage(false);
   };
 
   const handleAddUser = () => {
     setShowAddUser(true);
+  };
+
+  const handleDeleteThread = async () => {
+    try {
+      const response = await fetch(`http://0.0.0.0:8000/thread/${id}/delete/`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+
+      if (response.ok) {
+        // Ваша логіка після успішного видалення треду
+
+        // Переадресація на сторінку тредів
+        navigate('/threads');
+      } else {
+        console.error('Failed to delete thread');
+      }
+    } catch (error) {
+      console.error('Error during delete thread:', error);
+    }
   };
 
   return (
@@ -65,6 +88,7 @@ const ThreadDetail = () => {
             ))}
           </div>
           <button onClick={handleAddUser}>Add User</button>
+          <button onClick={handleDeleteThread}>Delete Thread</button>
         </div>
       ) : (
         <p>Loading...</p>
